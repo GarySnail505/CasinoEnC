@@ -39,7 +39,15 @@ git clone https://github.com/GarySnail505/CasinoEnC.git
 cd proyecto_casino
 ```
 
-### 2. Compilar el proyecto
+### 2. Dar permisos de ejecución
+
+```bash
+chmod +x scripts/ejecutar_experimento.sh
+
+```
+
+
+### 3. Compilar el proyecto
 
 ```bash
 make
@@ -138,6 +146,6 @@ Para eliminar todos los archivos generados:
 ```bash
 make clean
 ```
-Así, podrás ejecutar nuevamente el código mediante lo dicho anteriormente.
+Así, se podrá ejecutar nuevamente las veces que se requiera hacer. 
 
 
