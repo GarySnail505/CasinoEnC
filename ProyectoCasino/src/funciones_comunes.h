@@ -11,9 +11,8 @@
 #define NUM_GRUPOS 8
 #define TRANSACCIONES_POR_GRUPO 100000
 #define MAX_APUESTA 1000
-#define BLOQUE_ACTUALIZACION 10000  // Aumentar el tamaño del bloque
+#define BLOQUE_ACTUALIZACION 10000 
 
-// Grupos de juegos del casino
 static const char *GRUPOS[] = {
     "Blackjack",
     "Ruleta",
@@ -43,7 +42,7 @@ void procesar_transaccion(const char *grupo, int transaccion_id, double *gananci
         resultado_local += sqrt(1.0 - val * val);  // Cálculo más eficiente
     }
     
-    // Simular apuesta (1-1000 dólares)
+    // Simulación de apuesta (1-1000 dólares)
     double apuesta = (rand() % MAX_APUESTA) + 1;
     
     // Determinar resultado
@@ -52,7 +51,7 @@ void procesar_transaccion(const char *grupo, int transaccion_id, double *gananci
     // Actualizar ganancia local
     *ganancia_local += ganancia;
     
-    // Simular tiempo de procesamiento (reducido)
+    // Simular tiempo de procesamiento
     usleep(rand() % 30);  // Retardo aleatorio de 0-30 microsegundos
 }
 
