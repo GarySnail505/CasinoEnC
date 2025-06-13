@@ -14,13 +14,13 @@ Este proyecto busca resolver un problema de optimización de transacciones dentr
 
 El sistema simula 800,000 transacciones de apuestas distribuidas en 8 grupos de juegos diferentes (Blackjack, Ruleta, Poker, etc.), con 100,000 transacciones por grupo. El objetivo principal es demostrar empíricamente las diferencias de rendimiento entre ambos enfoques.
 
-## Características Clave
+## Características esenciales del proyecto
 
-- Simulación realista de transacciones de casino
-- Mecanismo de apuestas con ventaja de la casa del 21.25%
-- Sistema de medición precisa de tiempos con `clock_gettime()`
+- Simulación realista de transacciones de casino.
+- Mecanismo de apuestas con ventaja de la casa del 21.25%.
+- Sistema de medición precisa de tiempos con `clock_gettime()`.
 - Sincronización con `mutex` para acceso seguro a recursos compartidos
-- Generación automática de reportes comparativos
+- Generación automática de reportes comparativos.
 
 ## Requisitos Previos
 
@@ -31,10 +31,11 @@ El sistema simula 800,000 transacciones de apuestas distribuidas en 8 grupos de 
 
 ## Instrucciones de Compilación
 
-### 1. Clonar el repositorio
+### 1. Clonar el repositorio e ir al directorio `proyecto_casino`, lugar donde se va a ejecutar el programa
 
 ```bash
 git clone https://github.com/GarySnail505/CasinoEnC.git
+
 cd proyecto_casino
 ```
 
@@ -44,7 +45,7 @@ cd proyecto_casino
 make
 ```
 
-Este comando:
+Este último comando:
 
 - Creará los directorios necesarios (`bin/` y `resultados/`)
 - Compilará ambos programas:
@@ -53,7 +54,7 @@ Este comando:
 
 ## Ejecución del Experimento
 
-### Ejecutar el experimento completo
+### Ejecutar de manera completo
 
 ```bash
 ./scripts/ejecutar_experimento.sh
