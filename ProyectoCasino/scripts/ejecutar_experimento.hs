@@ -4,7 +4,7 @@
 NUM_EJECUCIONES=5
 DIR_RESULTADOS="$PWD/resultados"
 
-# Crear archivos de resultados vacíos
+# Crear archivos vacíos para luego llenarlos
 > "$DIR_RESULTADOS/tiempos_procesos.txt"
 > "$DIR_RESULTADOS/tiempos_hilos.txt"
 
@@ -14,11 +14,11 @@ extraer_tiempo_total() {
     grep "Tiempo total" "$archivo" | awk '{print $3}'
 }
 
-# Ejecutar experimentos
+# Ejecución de los experimentos
 for ((i=1; i<=NUM_EJECUCIONES; i++)); do
     echo "Ejecución $i:"
     
-    # Versión con procesos
+    # Usando procesos
     echo "  Procesos..."
     /usr/bin/time -f "%e" -o tmp_time.txt ./bin/casino_procesos >/dev/null 2>&1
     tiempo_procesos=$(cat tmp_time.txt)
@@ -27,7 +27,7 @@ for ((i=1; i<=NUM_EJECUCIONES; i++)); do
     # Mover y renombrar log
     mv "$DIR_RESULTADOS/procesos.log" "$DIR_RESULTADOS/procesos_$i.log"
     
-    # Versión con hilos
+    # Usando hilos
     echo "  Hilos..."
     /usr/bin/time -f "%e" -o tmp_time.txt ./bin/casino_hilos >/dev/null 2>&1
     tiempo_hilos=$(cat tmp_time.txt)
