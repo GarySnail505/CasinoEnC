@@ -73,7 +73,7 @@ int main() {
         }
     }
     
-    // Esperar a que todos los hijos terminen
+    // Se espera a que todos los hijos terminen
     for (int i = 0; i < NUM_GRUPOS; i++) {
         waitpid(pids[i], NULL, 0);
     }
@@ -81,7 +81,7 @@ int main() {
     // Finalizar medición de tiempo
     clock_gettime(CLOCK_MONOTONIC, &fin_total);
     
-    // Resultados finales
+    // Operacion para sacar ya los resultados finales
     double elapsed_total = (fin_total.tv_sec - inicio_total.tv_sec);
     elapsed_total += (fin_total.tv_nsec - inicio_total.tv_nsec) / 1000000000.0;
     
@@ -92,7 +92,7 @@ int main() {
     fprintf(log, "Ganancias totales del casino: $%.2f\n", compartido->resultado.ganancias_total);
     fclose(log);
     
-    // Limpiar recursos
+    // Limpieza de recursos
     pthread_mutex_destroy(&compartido->mutex);
     munmap(compartido, sizeof(struct ResultadoCompartido));
     shm_unlink("/casino_shm");
