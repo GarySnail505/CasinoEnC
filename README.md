@@ -7,12 +7,12 @@
 
 ## Descripción del Proyecto
 
-Este proyecto implementa un sistema de simulación de casino online para comparar el rendimiento entre dos enfoques de programación paralela:
+Este proyecto busca resolver un problema de optimización de transacciones dentro de un casino online. Es por ello que se va a implementar un sistema de simulación para comparar el rendimiento entre dos enfoques de programación paralela:
 
 - **Versión con procesos:** Usa `fork()` para crear múltiples procesos.
 - **Versión con hilos:** Usa `pthreads` para crear múltiples hilos.
 
-El sistema simula **800,000 transacciones de apuestas** distribuidas en **8 grupos de juegos** diferentes (Blackjack, Ruleta, Poker, etc.), con 100,000 transacciones por grupo. El objetivo principal es demostrar empíricamente las diferencias de rendimiento entre ambos enfoques.
+El sistema simula 800,000 transacciones de apuestas distribuidas en 8 grupos de juegos diferentes (Blackjack, Ruleta, Poker, etc.), con 100,000 transacciones por grupo. El objetivo principal es demostrar empíricamente las diferencias de rendimiento entre ambos enfoques.
 
 ## Características Clave
 
