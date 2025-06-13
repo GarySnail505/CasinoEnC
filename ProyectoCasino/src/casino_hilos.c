@@ -5,10 +5,10 @@ struct ThreadArgs {
     const char *grupo;
     struct ResultadoGlobal *resultado;
     pthread_mutex_t *mutex;
-    char padding[64];  // Padding para evitar false sharing
+    char padding[64]; 
 };
 
-// Función optimizada para el hilo
+// Función para procesar cada grupo las transacciones
 void *procesar_grupo(void *arg) {
     struct ThreadArgs *args = (struct ThreadArgs *)arg;
     struct timespec inicio, fin;
@@ -19,7 +19,6 @@ void *procesar_grupo(void *arg) {
     for (int i = 0; i < TRANSACCIONES_POR_GRUPO; i++) {
         procesar_transaccion(args->grupo, i, &ganancia_grupo);
         
-        // Actualizar global con menos frecuencia
         if (i % BLOQUE_ACTUALIZACION == 0) {
             pthread_mutex_lock(args->mutex);
             args->resultado->ganancias_total += ganancia_grupo;
@@ -29,7 +28,6 @@ void *procesar_grupo(void *arg) {
         }
     }
     
-    // Actualizar el resto
     pthread_mutex_lock(args->mutex);
     args->resultado->ganancias_total += ganancia_grupo;
     args->resultado->transacciones_procesadas += TRANSACCIONES_POR_GRUPO % BLOQUE_ACTUALIZACION;
@@ -53,7 +51,7 @@ int main() {
     pthread_mutex_t mutex;
     pthread_mutex_init(&mutex, NULL);
     
-    // Crear hilos
+    // Inicializacion de los hilos
     pthread_t hilos[NUM_GRUPOS];
     struct ThreadArgs args[NUM_GRUPOS];
     
@@ -64,10 +62,10 @@ int main() {
         args[i].mutex = &mutex;
     }
     
-    // Iniciar medición de tiempo DESPUÉS de inicialización
+    // Iniciar medición de tiempo después de inicialización
     clock_gettime(CLOCK_MONOTONIC, &inicio_total);
     
-    // Crear hilos
+    // Asignación de los hilos
     for (int i = 0; i < NUM_GRUPOS; i++) {
         if (pthread_create(&hilos[i], NULL, procesar_grupo, &args[i])) {
             perror("Error al crear hilo");
@@ -75,7 +73,7 @@ int main() {
         }
     }
     
-    // Esperar a que todos los hilos terminen
+    // El programa espera a que todos los hilos terminen
     for (int i = 0; i < NUM_GRUPOS; i++) {
         pthread_join(hilos[i], NULL);
     }
